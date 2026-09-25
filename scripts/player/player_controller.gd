@@ -1,18 +1,46 @@
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; since the parameters that go here are pretty flexible and some
-; can be changed at runtime without restarting the engine.
+extends CharacterBody2D
 
-[application]
+# Movement
+var speed = 200.0
+var direction = Vector2.ZERO
 
-config/name="AbysmusStation"
-config/version="0.1.0"
-run/main_scene="res://scenes/levels/medbay.tscn"
+# Animation & Sprites
+@onready var animated_sprite = $AnimatedSprite2D
 
-[debug]
+func _ready():
+	print("Player initialisiert - Abysmus-Station")
 
-gdscript/warnings/unused_variable=1
+func _physics_process(delta):
+	# Input Handler
+	get_input()
+	
+	# Bewegung
+	if direction != Vector2.ZERO:
+		velocity = direction.normalized() * speed
+		move_and_slide()
+	else:
+		velocity = Vector2.ZERO
+	
+	# Animation Update
+	update_animation()
 
-[physics]
+func get_input():
+	direction = Vector2.ZERO
+	
+	# WASD oder Pfeiltasten
+	if Input.is_action_pressed("ui_right"):
+		direction.x += 1
+	if Input.is_action_pressed("ui_left"):
+		direction.x -= 1
+	if Input.is_action_pressed("ui_down"):
+		direction.y += 1
+	if Input.is_action_pressed("ui_up"):
+		direction.y -= 1
 
-2d/physics_engine="GodotPhysics2D"
+func update_animation():
+	if direction == Vector2.ZERO:
+		if animated_sprite:
+			animated_sprite.play("idle")
+	else:
+		if animated_sprite:
+			animated_sprite.play("walk")
