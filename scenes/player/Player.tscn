@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg6uxm6kx8j03"]
+
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("res://scripts/player/player_controller.gd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0)
+shape = CapsuleShape2D(radius=10, height=20)
