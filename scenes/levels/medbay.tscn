@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3o7gk8j9q2x1"]
+[gd_scene load_steps=2 format=3 uid="uid://c3o7gk8j9q2x1"]
 
 [ext_resource type="PackedScene" uid="uid://dg6uxm6kx8j03" path="res://scenes/player/Player.tscn"]
-[ext_resource type="Script" path="res://scripts/world/camera_controller.gd"]
 
 [node name="Medbay" type="Node2D"]
 
@@ -9,9 +8,9 @@
 position = Vector2(500, 300)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-script = ExtResource("res://scripts/world/camera_controller.gd")
+zoom = Vector2(2.5, 2.5)
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 1920.0
